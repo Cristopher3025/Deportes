@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sport_tournament.sporttournament.MainController">
+
+    <left>
+        <VBox spacing="10">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+            <Button text="🏀 Deportes" onAction="#mostrarDeportes" maxWidth="150"/>
+            <Button text="👥 Equipos" onAction="#mostrarEquipos" maxWidth="150"/>
+            <Button text="🏆 Torneos" onAction="#mostrarTorneos" maxWidth="150"/>
+            <Button text="📊 Estadísticas" onAction="#mostrarEstadisticas" maxWidth="150"/>
+            <Button text="🏅 Certificados" onAction="#mostrarCertificados" maxWidth="150"/>
+        </VBox>
+    </left>
+
+    <center>
+        <AnchorPane fx:id="contenidoPrincipal"/>
+    </center>
+</BorderPane>

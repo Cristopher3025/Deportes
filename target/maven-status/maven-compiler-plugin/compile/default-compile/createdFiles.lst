@@ -1,0 +1,11 @@
+sport_tournament\sporttournament\MainController.class
+sport_tournament\sporttournament\SportController.class
+database\Sport.class
+database\Match.class
+database_manager\DAO.class
+database\TournamentTeam.class
+database_manager\SportDAO.class
+sport_tournament\sporttournament\App.class
+database\Tournament.class
+database\Team.class
+database\MatchResult.class
