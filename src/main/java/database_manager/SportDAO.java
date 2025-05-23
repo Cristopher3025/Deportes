@@ -46,7 +46,7 @@ public class SportDAO {
 
     public void deleteSport(Sport sport) {
         em.getTransaction().begin();
-        sport = em.merge(sport); // asegurarse de que esté gestionado
+        sport = em.merge(sport); 
         em.remove(sport);
         em.getTransaction().commit();
     }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sport_tournament.sporttournament.TournamentController"
+            prefWidth="600" prefHeight="400">
+    
+    <children>
+        <Label layoutX="240" layoutY="10" text="Nombre del torneo"/>
+        <TextField fx:id="tf_nombre" layoutX="200" layoutY="30" prefWidth="200"/>
+
+        <Label layoutX="240" layoutY="60" text="Deporte"/>
+        <ComboBox fx:id="combo_deporte" layoutX="200" layoutY="80" prefWidth="200"/>
+
+        <Label layoutX="240" layoutY="110" text="Cantidad de equipos"/>
+        <TextField fx:id="tf_cantidad" layoutX="200" layoutY="130" prefWidth="200"/>
+
+        <Label layoutX="240" layoutY="160" text="Duración del partido (min)"/>
+        <TextField fx:id="tf_duracion" layoutX="200" layoutY="180" prefWidth="200"/>
+
+        <Button layoutX="250" layoutY="220" text="Registrar torneo" onAction="#registrarTorneo"/>
+
+        <Label fx:id="lbl_mensaje" layoutX="200" layoutY="260" textFill="green"/>
+
+        <TableView fx:id="tablaTorneos" layoutX="50" layoutY="290" prefWidth="500" prefHeight="100">
+            <columns>
+                <TableColumn fx:id="colNombre" text="Nombre" prefWidth="150"/>
+                <TableColumn fx:id="colDeporte" text="Deporte" prefWidth="150"/>
+                <TableColumn fx:id="colEquipos" text="Equipos" prefWidth="100"/>
+                <TableColumn fx:id="colDuracion" text="Duración" prefWidth="100"/>
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

@@ -9,18 +9,26 @@
             fx:controller="sport_tournament.sporttournament.MainController">
 
     <left>
-        <VBox spacing="10">
-    <padding>
-        <Insets top="10" right="10" bottom="10" left="10"/>
-    </padding>
+    <VBox fx:id="menuLateral" spacing="10" alignment="TOP_LEFT" styleClass="menu-lateral">
+        <padding>
+            <Insets top="20" left="10" right="10" bottom="10"/>
+        </padding>
 
-            <Button text="🏀 Deportes" onAction="#mostrarDeportes" maxWidth="150"/>
-            <Button text="👥 Equipos" onAction="#mostrarEquipos" maxWidth="150"/>
-            <Button text="🏆 Torneos" onAction="#mostrarTorneos" maxWidth="150"/>
-            <Button text="📊 Estadísticas" onAction="#mostrarEstadisticas" maxWidth="150"/>
-            <Button text="🏅 Certificados" onAction="#mostrarCertificados" maxWidth="150"/>
-        </VBox>
-    </left>
+        <Label text="⚙ Menú principal" styleClass="titulo-menu"/>
+
+        <Button text="🏀 Deportes" onAction="#mostrarDeportes" maxWidth="180" />
+        <Button text="👥 Equipos" onAction="#mostrarEquipos" maxWidth="180"/>
+        <Button text="🏆 Torneos" onAction="#mostrarTorneos" maxWidth="180"/>
+        <Button text="📊 Estadísticas" onAction="#mostrarEstadisticas" maxWidth="180"/>
+        <Button text="🏅 Certificados" onAction="#mostrarCertificados" maxWidth="180"/>
+        
+        <Separator />
+
+        <Button text="ℹ Sobre el creador" onAction="#mostrarInformacionCreador" maxWidth="180"/>
+        <Button text="❌ Salir" onAction="#salirAplicacion" maxWidth="180"/>
+    </VBox>
+</left>
+
 
     <center>
         <AnchorPane fx:id="contenidoPrincipal"/>

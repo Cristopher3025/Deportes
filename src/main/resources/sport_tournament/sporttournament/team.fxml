@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sport_tournament.sporttournament.TeamController">
+
+    <children>
+        <Label layoutX="230.0" layoutY="20.0" text="Nombre del Equipo"/>
+        <TextField fx:id="tf_team_name" layoutX="200.0" layoutY="40.0" prefWidth="200"/>
+
+        <Label layoutX="230.0" layoutY="70.0" text="Ruta de Foto"/>
+        <TextField fx:id="tf_photo_path" layoutX="200.0" layoutY="90.0" prefWidth="200"/>
+        <Button layoutX="420.0" layoutY="90.0" text="📁" onAction="#cargarImagen"/>
+
+        <Label layoutX="230.0" layoutY="120.0" text="Deporte"/>
+        <ComboBox fx:id="combo_deportes" layoutX="200.0" layoutY="140.0" prefWidth="200"/>
+
+        <Button layoutX="70.0" layoutY="180.0" text="Agregar" onAction="#agregarEquipo"/>
+        <Button layoutX="170.0" layoutY="180.0" text="Buscar" onAction="#buscarEquipo"/>
+        <Button layoutX="270.0" layoutY="180.0" text="Modificar" onAction="#modificarEquipo"/>
+        <Button layoutX="370.0" layoutY="180.0" text="Eliminar" onAction="#eliminarEquipo"/>
+
+        <Label fx:id="lbl_mensaje" layoutX="200.0" layoutY="220.0" textFill="green"/>
+
+        <TableView fx:id="tablaEquipos" layoutX="50.0" layoutY="250.0" prefWidth="500.0" prefHeight="120.0">
+            <columns>
+                <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
+                <TableColumn fx:id="colNombre" text="Nombre del Equipo" prefWidth="150"/>
+                <TableColumn fx:id="colFoto" text="Foto" prefWidth="150"/>
+                <TableColumn fx:id="colDeporte" text="Deporte" prefWidth="150"/>
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>
