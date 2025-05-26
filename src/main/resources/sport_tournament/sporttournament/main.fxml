@@ -19,8 +19,14 @@
         <Button text="🏀 Deportes" onAction="#mostrarDeportes" maxWidth="180" />
         <Button text="👥 Equipos" onAction="#mostrarEquipos" maxWidth="180"/>
         <Button text="🏆 Torneos" onAction="#mostrarTorneos" maxWidth="180"/>
+        <Button text="🎮 Partidos" onAction="#mostrarPartidos" maxWidth="180"/>
         <Button text="📊 Estadísticas" onAction="#mostrarEstadisticas" maxWidth="180"/>
         <Button text="🏅 Certificados" onAction="#mostrarCertificados" maxWidth="180"/>
+        <Button text="📥 Inscripción" onAction="#mostrarInscripcion" maxWidth="180"/>
+        <Button text="⚽ Resultados" onAction="#mostrarResultados" maxWidth="180"/>
+
+        
+
         
         <Separator />
 

@@ -1,9 +1,13 @@
 package sport_tournament.sporttournament;
 
+import database.Match;
 import database.Sport;
 import database.Tournament;
+import database.TournamentTeam;
+import database_manager.MatchDAO;
 import database_manager.SportDAO;
 import database_manager.TournamentDAO;
+import database_manager.TournamentTeamDAO;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -30,6 +34,7 @@ public class TournamentController {
     private final SportDAO sportDAO = new SportDAO();
     private final TournamentDAO torneoDAO = new TournamentDAO();
     private final ObservableList<Tournament> torneos = FXCollections.observableArrayList();
+    private Tournament torneoSeleccionado;
 
     @FXML
     public void initialize() {
@@ -43,9 +48,17 @@ public class TournamentController {
         for (Sport s : sportDAO.findAll()) {
             nombres.add(s.getSportName());
         }
-        combo_deporte.getItems().setAll(nombres);
+         combo_deporte.getItems().setAll(nombres);
 
-        cargarTorneos();
+            cargarTorneos();
+        
+            tablaTorneos.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                torneoSeleccionado = newVal;
+                tf_nombre.setText(torneoSeleccionado.getTournamentName()); // opcional: para mostrarlo
+        }
+        });
+
     }
 
     private void cargarTorneos() {
@@ -83,4 +96,42 @@ public class TournamentController {
             lbl_mensaje.setText("Datos inválidos.");
         }
     }
+    
+    @FXML
+private void generarLlaves() {
+    Tournament torneo = torneoSeleccionado;
+    if (torneo == null) {
+        lbl_mensaje.setText("Seleccione un torneo de la tabla.");
+        return;
+    }
+
+
+    if (torneo == null) {
+        lbl_mensaje.setText("Torneo no encontrado.");
+        return;
+    }
+
+    List<TournamentTeam> inscritos = new TournamentTeamDAO().findByTournament(torneo);
+
+    if (inscritos.size() % 2 != 0) {
+        lbl_mensaje.setText("Cantidad impar de equipos.");
+        return;
+    }
+
+    
+    java.util.Collections.shuffle(inscritos);
+
+    MatchDAO matchDAO = new MatchDAO();
+    for (int i = 0; i < inscritos.size(); i += 2) {
+        Match m = new Match();
+        m.setTournamentId(torneo);
+        m.setTeam1Id(inscritos.get(i).getTeamId());
+        m.setTeam2Id(inscritos.get(i + 1).getTeamId());
+        m.setStatus("Pendiente");
+        matchDAO.addMatch(m);
+    }
+
+    lbl_mensaje.setText("Llaves generadas.");
+}
+
 }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sport_tournament.sporttournament.PartidoController"
+            prefWidth="600" prefHeight="400">
+
+    <children>
+        <Label layoutX="240" layoutY="10" text="Torneo"/>
+        <ComboBox fx:id="comboTorneo" layoutX="200" layoutY="30" prefWidth="200"/>
+
+        <Button layoutX="420" layoutY="30" text="Buscar partidos" onAction="#buscarPartidos"/>
+
+        <TableView fx:id="tablaPartidos" layoutX="50" layoutY="80" prefWidth="500" prefHeight="280">
+            <columns>
+                <TableColumn fx:id="colEquipo1" text="Equipo 1" prefWidth="150"/>
+                <TableColumn fx:id="colEquipo2" text="Equipo 2" prefWidth="150"/>
+                <TableColumn fx:id="colEstado" text="Estado" prefWidth="150"/>
+            </columns>
+        </TableView>
+    </children>
+</AnchorPane>

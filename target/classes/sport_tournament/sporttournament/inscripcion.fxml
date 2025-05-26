@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sport_tournament.sporttournament.InscripcionController"
+            prefWidth="600" prefHeight="400">
+
+    <children>
+        <Label layoutX="240" layoutY="10" text="Selecciona un torneo"/>
+        <ComboBox fx:id="comboTorneo" layoutX="200" layoutY="30" prefWidth="200"/>
+
+        <Label layoutX="240" layoutY="70" text="Equipos disponibles"/>
+        <ListView fx:id="listaEquipos" layoutX="100" layoutY="100" prefWidth="400" prefHeight="180" />
+
+        <Button layoutX="250" layoutY="300" text="Inscribir seleccionados" onAction="#inscribirEquipos"/>
+
+        <Label fx:id="lbl_mensaje" layoutX="180" layoutY="340" textFill="green"/>
+    </children>
+</AnchorPane>

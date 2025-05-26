@@ -1,5 +1,6 @@
 package database_manager;
 
+import database.Sport;
 import database.Team;
 import jakarta.persistence.*;
 
@@ -30,7 +31,14 @@ public class TeamDAO {
             return null;
         }
     }
+    
+    public List<Team> findBySport(Sport s) {
+        return em.createQuery("SELECT t FROM Team t WHERE t.sportId = :sport", Team.class)
+                .setParameter("sport", s)
+                .getResultList();
+    }
 
+    
     public void updateTeam(Team t) {
         em.getTransaction().begin();
         em.merge(t);

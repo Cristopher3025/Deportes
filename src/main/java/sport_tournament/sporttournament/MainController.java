@@ -40,11 +40,29 @@ public class MainController {
     public void salirAplicacion() {
      System.exit(0);
         }       
+    
+    @FXML
+    public void mostrarInscripcion() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("inscripcion.fxml"));
+            contenidoPrincipal.getChildren().setAll(pane);
+        }
 
 
     @FXML
     public void mostrarTorneos() throws IOException {
     AnchorPane pane = FXMLLoader.load(getClass().getResource("torneo.fxml"));
+    contenidoPrincipal.getChildren().setAll(pane);
+    }
+    
+    @FXML
+    public void mostrarPartidos() throws IOException {
+    AnchorPane pane = FXMLLoader.load(getClass().getResource("partidos.fxml"));
+    contenidoPrincipal.getChildren().setAll(pane);
+    }
+    
+    @FXML
+    public void mostrarResultados() throws IOException {
+    AnchorPane pane = FXMLLoader.load(getClass().getResource("resultado.fxml"));
     contenidoPrincipal.getChildren().setAll(pane);
     }
 
