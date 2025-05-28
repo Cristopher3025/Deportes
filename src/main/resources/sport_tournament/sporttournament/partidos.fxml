@@ -6,20 +6,35 @@
 <AnchorPane xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="sport_tournament.sporttournament.PartidoController"
-            prefWidth="600" prefHeight="400">
+            prefWidth="650" prefHeight="450">
 
     <children>
-        <Label layoutX="240" layoutY="10" text="Torneo"/>
-        <ComboBox fx:id="comboTorneo" layoutX="200" layoutY="30" prefWidth="200"/>
 
-        <Button layoutX="420" layoutY="30" text="Buscar partidos" onAction="#buscarPartidos"/>
+        
+        <Label layoutX="180" layoutY="10" text="🎮 Gestión de Partidos"
+               style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
-        <TableView fx:id="tablaPartidos" layoutX="50" layoutY="80" prefWidth="500" prefHeight="280">
+        <Separator layoutX="50" layoutY="40" prefWidth="550"/>
+
+        
+        <Label layoutX="50" layoutY="60" text="Selecciona un torneo:"/>
+        <ComboBox fx:id="comboTorneo" layoutX="200" layoutY="56" prefWidth="350"/>
+
+        <Button layoutX="570" layoutY="55" text="🔍 Buscar partidos"
+                style="-fx-font-size: 14px; -fx-background-color: #0078D7; -fx-text-fill: white;"
+                onAction="#buscarPartidos"/>
+
+        <Separator layoutX="50" layoutY="100" prefWidth="550"/>
+
+        
+        <TableView fx:id="tablaPartidos" layoutX="50" layoutY="120" prefWidth="550" prefHeight="280">
             <columns>
-                <TableColumn fx:id="colEquipo1" text="Equipo 1" prefWidth="150"/>
-                <TableColumn fx:id="colEquipo2" text="Equipo 2" prefWidth="150"/>
-                <TableColumn fx:id="colEstado" text="Estado" prefWidth="150"/>
+                <TableColumn fx:id="colEquipo1" text="🏆 Equipo 1" prefWidth="180"/>
+                <TableColumn fx:id="colEquipo2" text="⚽ Equipo 2" prefWidth="180"/>
+                <TableColumn fx:id="colEstado" text="⏳ Estado" prefWidth="180"/>
             </columns>
         </TableView>
+
     </children>
 </AnchorPane>
+

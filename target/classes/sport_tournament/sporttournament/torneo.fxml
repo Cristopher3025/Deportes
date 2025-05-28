@@ -1,38 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/23.0.1"
+<AnchorPane prefHeight="450.0" prefWidth="650.0"
+            xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sport_tournament.sporttournament.TournamentController"
-            prefWidth="600" prefHeight="400">
-    
+            fx:controller="sport_tournament.sporttournament.TournamentController">
+
     <children>
-        <Label layoutX="240" layoutY="10" text="Nombre del torneo"/>
-        <TextField fx:id="tf_nombre" layoutX="200" layoutY="30" prefWidth="200"/>
 
-        <Label layoutX="240" layoutY="60" text="Deporte"/>
-        <ComboBox fx:id="combo_deporte" layoutX="200" layoutY="80" prefWidth="200"/>
+        <!-- Título -->
+        <Label layoutX="180" layoutY="10" text="🏆 Gestión de Torneos"
+               style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
-        <Label layoutX="240" layoutY="110" text="Cantidad de equipos"/>
-        <TextField fx:id="tf_cantidad" layoutX="200" layoutY="130" prefWidth="200"/>
+        <Separator layoutX="50" layoutY="40" prefWidth="550"/>
 
-        <Label layoutX="240" layoutY="160" text="Duración del partido (min)"/>
-        <TextField fx:id="tf_duracion" layoutX="200" layoutY="180" prefWidth="200"/>
+        <!-- Nombre del torneo -->
+        <Label layoutX="50" layoutY="60" text="Nombre del Torneo:"/>
+        <TextField fx:id="tf_nombre" layoutX="200" layoutY="56" prefWidth="350"/>
 
-        <Button layoutX="250" layoutY="220" text="Registrar torneo" onAction="#registrarTorneo"/>
-        <Button layoutX="400" layoutY="220" text="Generar llaves" onAction="#generarLlaves"/>
+        <!-- Selección de deporte -->
+        <Label layoutX="50" layoutY="100" text="Deporte:"/>
+        <ComboBox fx:id="combo_deporte" layoutX="200" layoutY="96" prefWidth="350"/>
 
-        <Label fx:id="lbl_mensaje" layoutX="200" layoutY="260" textFill="green"/>
+        <!-- Cantidad de equipos -->
+        <Label layoutX="50" layoutY="140" text="Cantidad de Equipos:"/>
+        <TextField fx:id="tf_cantidad" layoutX="200" layoutY="136" prefWidth="350"/>
 
-        <TableView fx:id="tablaTorneos" layoutX="50" layoutY="290" prefWidth="500" prefHeight="100">
+        <!-- Duración del partido -->
+        <Label layoutX="50" layoutY="180" text="Duración del Partido (min):"/>
+        <TextField fx:id="tf_duracion" layoutX="200" layoutY="176" prefWidth="350"/>
+
+        <Separator layoutX="50" layoutY="210" prefWidth="550"/>
+
+        <!-- Botones de acción -->
+        <HBox layoutX="140" layoutY="230" spacing="15">
+            <children>
+                <Button text="✅ Registrar Torneo" onAction="#registrarTorneo" prefWidth="150"
+                        style="-fx-font-size: 14px; -fx-background-color: #0078D7; -fx-text-fill: white;"/>
+                <Button text="🔀 Generar Llaves" onAction="#generarLlaves" prefWidth="150"
+                        style="-fx-font-size: 14px; -fx-background-color: #28A745; -fx-text-fill: white;"/>
+            </children>
+        </HBox>
+
+        <!-- Mensaje -->
+        <Label fx:id="lbl_mensaje" layoutX="200" layoutY="270" textFill="green"/>
+
+        <Separator layoutX="50" layoutY="300" prefWidth="550"/>
+
+        <!-- Tabla de torneos -->
+        <TableView fx:id="tablaTorneos" layoutX="50" layoutY="320" prefWidth="550" prefHeight="120">
             <columns>
-                <TableColumn fx:id="colNombre" text="Nombre" prefWidth="150"/>
-                <TableColumn fx:id="colDeporte" text="Deporte" prefWidth="150"/>
-                <TableColumn fx:id="colEquipos" text="Equipos" prefWidth="100"/>
-                <TableColumn fx:id="colDuracion" text="Duración" prefWidth="100"/>
+                <TableColumn fx:id="colNombre" text="🏆 Torneo" prefWidth="180"/>
+                <TableColumn fx:id="colDeporte" text="⚽ Deporte" prefWidth="180"/>
+                <TableColumn fx:id="colEquipos" text="👥 Equipos" prefWidth="100"/>
+                <TableColumn fx:id="colDuracion" text="⏳ Duración" prefWidth="100"/>
             </columns>
         </TableView>
+
     </children>
 </AnchorPane>
+

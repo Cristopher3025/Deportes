@@ -4,36 +4,59 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0"
+<AnchorPane prefHeight="450.0" prefWidth="650.0"
             xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="sport_tournament.sporttournament.TeamController">
 
     <children>
-        <Label layoutX="230.0" layoutY="20.0" text="Nombre del Equipo"/>
-        <TextField fx:id="tf_team_name" layoutX="200.0" layoutY="40.0" prefWidth="200"/>
 
-        <Label layoutX="230.0" layoutY="70.0" text="Ruta de Foto"/>
-        <TextField fx:id="tf_photo_path" layoutX="200.0" layoutY="90.0" prefWidth="200"/>
-        <Button layoutX="420.0" layoutY="90.0" text="📁" onAction="#cargarImagen"/>
+        <!-- Título -->
+        <Label layoutX="180" layoutY="10" text="👥 Gestión de Equipos"
+               style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
-        <Label layoutX="230.0" layoutY="120.0" text="Deporte"/>
-        <ComboBox fx:id="combo_deportes" layoutX="200.0" layoutY="140.0" prefWidth="200"/>
+        <Separator layoutX="50" layoutY="40" prefWidth="550"/>
 
-        <Button layoutX="70.0" layoutY="180.0" text="Agregar" onAction="#agregarEquipo"/>
-        <Button layoutX="170.0" layoutY="180.0" text="Buscar" onAction="#buscarEquipo"/>
-        <Button layoutX="270.0" layoutY="180.0" text="Modificar" onAction="#modificarEquipo"/>
-        <Button layoutX="370.0" layoutY="180.0" text="Eliminar" onAction="#eliminarEquipo"/>
+        <!-- Nombre del equipo -->
+        <Label layoutX="50" layoutY="60" text="Nombre del Equipo:"/>
+        <TextField fx:id="tf_team_name" layoutX="200" layoutY="56" prefWidth="350"/>
 
-        <Label fx:id="lbl_mensaje" layoutX="200.0" layoutY="220.0" textFill="green"/>
+        <!-- Ruta de imagen -->
+        <Label layoutX="50" layoutY="100" text="Ruta de Foto:"/>
+        <TextField fx:id="tf_photo_path" layoutX="200" layoutY="96" prefWidth="280"/>
+        <Button layoutX="500" layoutY="96" text="📁" onAction="#cargarImagen"/>
 
-        <TableView fx:id="tablaEquipos" layoutX="50.0" layoutY="250.0" prefWidth="500.0" prefHeight="120.0">
+        <!-- Selección de deporte -->
+        <Label layoutX="50" layoutY="140" text="Deporte:"/>
+        <ComboBox fx:id="combo_deportes" layoutX="200" layoutY="136" prefWidth="350"/>
+
+        <Separator layoutX="50" layoutY="170" prefWidth="550"/>
+
+        <!-- Botones de acción -->
+        <HBox layoutX="140" layoutY="190" spacing="15">
+            <children>
+                <Button text="Agregar" onAction="#agregarEquipo" prefWidth="100"/>
+                <Button text="Buscar" onAction="#buscarEquipo" prefWidth="100"/>
+                <Button text="Modificar" onAction="#modificarEquipo" prefWidth="100"/>
+                <Button text="Eliminar" onAction="#eliminarEquipo" prefWidth="100"/>
+            </children>
+        </HBox>
+
+        <!-- Mensaje -->
+        <Label fx:id="lbl_mensaje" layoutX="200" layoutY="230" textFill="green"/>
+
+        <Separator layoutX="50" layoutY="260" prefWidth="550"/>
+
+        <!-- Tabla de equipos -->
+        <TableView fx:id="tablaEquipos" layoutX="50" layoutY="280" prefWidth="550" prefHeight="140">
             <columns>
-                <TableColumn fx:id="colId" text="ID" prefWidth="50"/>
-                <TableColumn fx:id="colNombre" text="Nombre del Equipo" prefWidth="150"/>
-                <TableColumn fx:id="colFoto" text="Foto" prefWidth="150"/>
-                <TableColumn fx:id="colDeporte" text="Deporte" prefWidth="150"/>
+                <TableColumn fx:id="colId" text="🔢 ID" prefWidth="90"/>
+                <TableColumn fx:id="colNombre" text="🏆 Nombre del Equipo" prefWidth="220"/>
+                <TableColumn fx:id="colFoto" text="🖼 Foto" prefWidth="120"/>
+                <TableColumn fx:id="colDeporte" text="⚽ Deporte" prefWidth="120"/>
             </columns>
         </TableView>
+
     </children>
 </AnchorPane>
+

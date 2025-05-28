@@ -52,23 +52,31 @@ public void initialize() {
         }
     }
 
-    @FXML
+    
 
+   @FXML
     private void registrarResultado() {
         int index = comboPartidos.getSelectionModel().getSelectedIndex();
         if (index < 0) {
-         lbl_mensaje.setText("Seleccione un partido.");
+            lbl_mensaje.setText("Seleccione un partido.");
             return;
         }
 
-            try {
-            int goles1 = Integer.parseInt(tf_goles1.getText().trim());
-            int goles2 = Integer.parseInt(tf_goles2.getText().trim());
+    try {
+        int goles1 = Integer.parseInt(tf_goles1.getText().trim());
+        int goles2 = Integer.parseInt(tf_goles2.getText().trim());
 
-            Match partido = partidos.get(index);
+        Match partido = partidos.get(index);
+        String nombreDeporte = partido.getTournamentId().getSportId().getSportName().toLowerCase();
+        List<Integer> permitidos = SportController.getAnotaciones(nombreDeporte);
 
-         MatchResult r1 = new MatchResult();
-         r1.setMatchId(partido);
+        if (permitidos != null && (!permitidos.contains(goles1) || !permitidos.contains(goles2))) {
+            lbl_mensaje.setText("Puntajes no válidos para el deporte: " + nombreDeporte);
+            return;
+        }
+
+        MatchResult r1 = new MatchResult();
+        r1.setMatchId(partido);
         r1.setTeamId(partido.getTeam1Id());
         r1.setGoals(BigInteger.valueOf(goles1));
         resultDAO.addResult(r1);
@@ -83,9 +91,10 @@ public void initialize() {
         matchDAO.updateMatch(partido);
 
         lbl_mensaje.setText("Resultado registrado.");
-    } catch (NumberFormatException e) {
+         }   catch (NumberFormatException e) {
         lbl_mensaje.setText("Goles inválidos.");
     }
 }
+
 
 }
