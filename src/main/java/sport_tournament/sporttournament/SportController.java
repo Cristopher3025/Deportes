@@ -67,14 +67,15 @@ public class SportController {
     private void cargarImagenBalon(ActionEvent event) {
         FileChooser fc = new FileChooser();
         fc.setTitle("Seleccionar imagen del balón");
-        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imágenes", "*.png", "*.jpg", "*.jpeg"));
-        fc.setInitialDirectory(new File("imagenes/ball")); 
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imágenes JPG", "*.jpg"));
+        fc.setInitialDirectory(new File("src/main/resources/imagenes/ball"));
 
         File archivo = fc.showOpenDialog(null);
         if (archivo != null) {
             tf_ball_path.setText("imagenes/ball/" + archivo.getName());
         }
     }
+
 
     
     @FXML

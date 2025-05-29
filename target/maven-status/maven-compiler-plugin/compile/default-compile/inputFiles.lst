@@ -5,7 +5,9 @@ C:\Users\crist\Desktop\SportTournament\src\main\java\sport_tournament\sporttourn
 C:\Users\crist\Desktop\SportTournament\src\main\java\database_manager\MatchDAO.java
 C:\Users\crist\Desktop\SportTournament\src\main\java\sport_tournament\sporttournament\TeamController.java
 C:\Users\crist\Desktop\SportTournament\src\main\java\sport_tournament\sporttournament\App.java
+C:\Users\crist\Desktop\SportTournament\src\main\java\sport_tournament\sporttournament\DesempateController.java
 C:\Users\crist\Desktop\SportTournament\src\main\java\database_manager\MatchResultDAO.java
+C:\Users\crist\Desktop\SportTournament\src\main\java\sport_tournament\sporttournament\SimulacionPartidoController.java
 C:\Users\crist\Desktop\SportTournament\src\main\java\sport_tournament\sporttournament\PartidoController.java
 C:\Users\crist\Desktop\SportTournament\src\main\java\database_manager\DAO.java
 C:\Users\crist\Desktop\SportTournament\src\main\java\database\Team.java
@@ -15,6 +17,7 @@ C:\Users\crist\Desktop\SportTournament\src\main\java\sport_tournament\sporttourn
 C:\Users\crist\Desktop\SportTournament\src\main\java\database\MatchResult.java
 C:\Users\crist\Desktop\SportTournament\src\main\java\sport_tournament\sporttournament\TournamentController.java
 C:\Users\crist\Desktop\SportTournament\src\main\java\database\Sport.java
+C:\Users\crist\Desktop\SportTournament\src\main\java\sport_tournament\sporttournament\EstadisticasController.java
 C:\Users\crist\Desktop\SportTournament\src\main\java\database_manager\TournamentTeamDAO.java
 C:\Users\crist\Desktop\SportTournament\src\main\java\sport_tournament\sporttournament\MainController.java
 C:\Users\crist\Desktop\SportTournament\src\main\java\database_manager\SportDAO.java

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="sport_tournament.sporttournament.SimulacionPartidoController"
+            prefWidth="600" prefHeight="400" style="-fx-background-color: #f0f0f0;">
+    
+    <Label fx:id="lbl_timer" layoutX="20" layoutY="10" text="Tiempo restante: 60s" style="-fx-font-size: 16px; -fx-text-fill: #333;" />
+
+    <Label fx:id="lbl_nombre1" layoutX="100" layoutY="50" text="Equipo 1" style="-fx-font-size: 18px;" />
+    <Label fx:id="lbl_nombre2" layoutX="400" layoutY="50" text="Equipo 2" style="-fx-font-size: 18px;" />
+
+    <ImageView fx:id="img_equipo1" layoutX="80" layoutY="100" fitWidth="100" fitHeight="100" />
+    <ImageView fx:id="img_equipo2" layoutX="420" layoutY="100" fitWidth="100" fitHeight="100" />
+
+    <ImageView fx:id="img_balon" layoutX="270" layoutY="150" fitWidth="60" fitHeight="60" />
+
+    <Label fx:id="lbl_marcador" layoutX="260" layoutY="270" text="0 - 0" style="-fx-font-size: 24px;" />
+
+    <Button fx:id="btn_finalizar" layoutX="250" layoutY="320" text="Finalizar Partido" onAction="#finalizarPartido"
+            style="-fx-font-size: 14px; -fx-background-color: #4CAF50; -fx-text-fill: white;" />
+
+</AnchorPane>
+
+

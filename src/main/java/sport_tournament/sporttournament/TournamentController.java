@@ -55,7 +55,7 @@ public class TournamentController {
             tablaTorneos.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 torneoSeleccionado = newVal;
-                tf_nombre.setText(torneoSeleccionado.getTournamentName()); // opcional: para mostrarlo
+                tf_nombre.setText(torneoSeleccionado.getTournamentName()); 
         }
         });
 

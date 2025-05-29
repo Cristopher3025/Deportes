@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sport_tournament.sporttournament.EstadisticasController"
+            prefWidth="700" prefHeight="500" style="-fx-background-color: #f9f9f9;">
+    
+    <children>
+        <Label text="Estadísticas por Equipo" layoutX="20" layoutY="10" style="-fx-font-size: 20px;" />
+        
+        <Label text="Seleccionar equipo:" layoutX="20" layoutY="50"/>
+        <ComboBox fx:id="comboEquipos" layoutX="150" layoutY="45" prefWidth="200"/>
+        
+        <TableView fx:id="tablaTorneos" layoutX="20" layoutY="90" prefWidth="660" prefHeight="200">
+            <columns>
+                <TableColumn fx:id="colTorneo" text="Torneo" prefWidth="200"/>
+                <TableColumn fx:id="colPosicion" text="Posición" prefWidth="100"/>
+                <TableColumn fx:id="colGanados" text="Ganados" prefWidth="100"/>
+                <TableColumn fx:id="colGoles" text="Goles" prefWidth="100"/>
+                <TableColumn fx:id="colPuntos" text="Puntos" prefWidth="100"/>
+            </columns>
+        </TableView>
+
+        <Label layoutX="20" layoutY="310" text="Estadísticas Generales:" style="-fx-font-size: 16px;"/>
+        
+        <VBox layoutX="40" layoutY="340" spacing="10">
+            <Label fx:id="lblPartidos" text="Partidos jugados: 0"/>
+            <Label fx:id="lblGanados" text="Partidos ganados: 0"/>
+            <Label fx:id="lblGoles" text="Goles anotados: 0"/>
+            <Label fx:id="lblPuntos" text="Puntos totales: 0"/>
+        </VBox>
+
+        <Label layoutX="400" layoutY="310" text="Ranking Global" style="-fx-font-size: 16px;" />
+        <ListView fx:id="listaRanking" layoutX="400" layoutY="340" prefWidth="280" prefHeight="130"/>
+    </children>
+</AnchorPane>

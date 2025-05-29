@@ -10,13 +10,13 @@
 
     <children>
 
-        <!-- Título -->
+        
         <Label layoutX="180" layoutY="10" text="🎮 Gestión de Partidos"
                style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
         <Separator layoutX="50" layoutY="40" prefWidth="550"/>
 
-        <!-- Selección de torneo -->
+        
         <Label layoutX="50" layoutY="60" text="Selecciona un torneo:"/>
         <ComboBox fx:id="comboTorneo" layoutX="200" layoutY="56" prefWidth="350"/>
 
@@ -26,7 +26,7 @@
 
         <Separator layoutX="50" layoutY="100" prefWidth="550"/>
 
-        <!-- Tabla de partidos -->
+        
         <TableView fx:id="tablaPartidos" layoutX="50" layoutY="120" prefWidth="550" prefHeight="280">
             <columns>
                 <TableColumn fx:id="colEquipo1" text="🏆 Equipo 1" prefWidth="180"/>

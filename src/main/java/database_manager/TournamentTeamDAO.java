@@ -21,5 +21,10 @@ public class TournamentTeamDAO {
              .setParameter("torneo", torneo)
              .getResultList();
 }
+    
+    public List<TournamentTeam> findAll() {
+    return em.createNamedQuery("TournamentTeam.findAll", TournamentTeam.class).getResultList();
+}
+
 
 }

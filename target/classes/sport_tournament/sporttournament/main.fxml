@@ -14,28 +14,24 @@
                 <Insets top="25" left="15" right="15" bottom="15"/>
             </padding>
 
-            <!-- Título del menú -->
             <Label text="⚙ Menú Principal" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
 
             <Separator />
 
-            <!-- Botones principales -->
             <Button text="🏀 Deportes" onAction="#mostrarDeportes" maxWidth="200" />
             <Button text="👥 Equipos" onAction="#mostrarEquipos" maxWidth="200"/>
             <Button text="🏆 Torneos" onAction="#mostrarTorneos" maxWidth="200"/>
+            <Button text="📥 Inscripción" onAction="#mostrarInscripcion" maxWidth="200"/>
             <Button text="🎮 Partidos" onAction="#mostrarPartidos" maxWidth="200"/>
+            <Button text="⚽ Resultados" onAction="#mostrarResultados" maxWidth="200"/>
             <Button text="📊 Estadísticas" onAction="#mostrarEstadisticas" maxWidth="200"/>
             <Button text="🏅 Certificados" onAction="#mostrarCertificados" maxWidth="200"/>
-            <Button text="📥 Inscripción" onAction="#mostrarInscripcion" maxWidth="200"/>
-            <Button text="⚽ Resultados" onAction="#mostrarResultados" maxWidth="200"/>
 
             <Separator />
 
-            <!-- Información sobre el creador -->
             <Button text="ℹ Sobre el creador" onAction="#mostrarInformacionCreador" maxWidth="200"
                     style="-fx-background-color: #0078D7; -fx-text-fill: white;"/>
 
-            <!-- Botón de salida -->
             <Button text="❌ Salir" onAction="#salirAplicacion" maxWidth="200"
                     style="-fx-background-color: #D9534F; -fx-text-fill: white;"/>
         </VBox>
@@ -45,3 +41,5 @@
         <AnchorPane fx:id="contenidoPrincipal"/>
     </center>
 </BorderPane>
+
+

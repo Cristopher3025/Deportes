@@ -4,6 +4,7 @@ import database.Sport;
 import database.Team;
 import database_manager.SportDAO;
 import database_manager.TeamDAO;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -11,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 
 public class TeamController {
 
@@ -53,8 +55,17 @@ public class TeamController {
 
     @FXML
     private void cargarImagen(ActionEvent event) {
-        lbl_mensaje.setText("Ruta manual de imagen. No implementado aún.");
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Seleccionar imagen del equipo");
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Imágenes JPG", "*.jpg"));
+        fc.setInitialDirectory(new File("src/main/resources/imagenes/teams"));
+
+        File archivo = fc.showOpenDialog(null);
+        if (archivo != null) {
+            tf_photo_path.setText("imagenes/teams/" + archivo.getName());
+        }
     }
+
 
     @FXML
     private void agregarEquipo(ActionEvent event) {

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      spacing="20" alignment="CENTER"
+      fx:controller="sport_tournament.sporttournament.DesempateController"
+      prefWidth="300" prefHeight="200">
+
+    <Label fx:id="lblPregunta" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+    <Button fx:id="btnEquipo1" onAction="#seleccionarGanador1" minWidth="200"/>
+    <Button fx:id="btnEquipo2" onAction="#seleccionarGanador2" minWidth="200"/>
+
+</VBox>

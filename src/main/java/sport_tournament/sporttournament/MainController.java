@@ -67,9 +67,12 @@ public class MainController {
     }
 
 
-    public void mostrarEstadisticas() {
-        // Pendiente
+    @FXML
+    public void mostrarEstadisticas() throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("estadisticas.fxml"));
+        contenidoPrincipal.getChildren().setAll(pane);
     }
+
 
     public void mostrarCertificados() {
         // Pendiente

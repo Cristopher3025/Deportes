@@ -31,6 +31,11 @@ public class MatchDAO {
         em.merge(m);
         em.getTransaction().commit();
     }
+    
+    public List<Match> findAll() {
+    return em.createQuery("SELECT m FROM Match m", Match.class).getResultList();
+    }
+
 
 
 }

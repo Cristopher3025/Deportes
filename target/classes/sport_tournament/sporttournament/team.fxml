@@ -11,28 +11,28 @@
 
     <children>
 
-        <!-- Título -->
+        
         <Label layoutX="180" layoutY="10" text="👥 Gestión de Equipos"
                style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
         <Separator layoutX="50" layoutY="40" prefWidth="550"/>
 
-        <!-- Nombre del equipo -->
+       
         <Label layoutX="50" layoutY="60" text="Nombre del Equipo:"/>
         <TextField fx:id="tf_team_name" layoutX="200" layoutY="56" prefWidth="350"/>
 
-        <!-- Ruta de imagen -->
+       
         <Label layoutX="50" layoutY="100" text="Ruta de Foto:"/>
         <TextField fx:id="tf_photo_path" layoutX="200" layoutY="96" prefWidth="280"/>
         <Button layoutX="500" layoutY="96" text="📁" onAction="#cargarImagen"/>
 
-        <!-- Selección de deporte -->
+       
         <Label layoutX="50" layoutY="140" text="Deporte:"/>
         <ComboBox fx:id="combo_deportes" layoutX="200" layoutY="136" prefWidth="350"/>
 
         <Separator layoutX="50" layoutY="170" prefWidth="550"/>
 
-        <!-- Botones de acción -->
+       
         <HBox layoutX="140" layoutY="190" spacing="15">
             <children>
                 <Button text="Agregar" onAction="#agregarEquipo" prefWidth="100"/>
@@ -42,12 +42,12 @@
             </children>
         </HBox>
 
-        <!-- Mensaje -->
+   
         <Label fx:id="lbl_mensaje" layoutX="200" layoutY="230" textFill="green"/>
 
         <Separator layoutX="50" layoutY="260" prefWidth="550"/>
 
-        <!-- Tabla de equipos -->
+      
         <TableView fx:id="tablaEquipos" layoutX="50" layoutY="280" prefWidth="550" prefHeight="140">
             <columns>
                 <TableColumn fx:id="colId" text="🔢 ID" prefWidth="90"/>

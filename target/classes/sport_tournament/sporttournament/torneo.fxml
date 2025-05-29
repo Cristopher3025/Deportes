@@ -11,31 +11,31 @@
 
     <children>
 
-        <!-- Título -->
+        
         <Label layoutX="180" layoutY="10" text="🏆 Gestión de Torneos"
                style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
         <Separator layoutX="50" layoutY="40" prefWidth="550"/>
 
-        <!-- Nombre del torneo -->
+        
         <Label layoutX="50" layoutY="60" text="Nombre del Torneo:"/>
         <TextField fx:id="tf_nombre" layoutX="200" layoutY="56" prefWidth="350"/>
 
-        <!-- Selección de deporte -->
+        
         <Label layoutX="50" layoutY="100" text="Deporte:"/>
         <ComboBox fx:id="combo_deporte" layoutX="200" layoutY="96" prefWidth="350"/>
 
-        <!-- Cantidad de equipos -->
+        
         <Label layoutX="50" layoutY="140" text="Cantidad de Equipos:"/>
         <TextField fx:id="tf_cantidad" layoutX="200" layoutY="136" prefWidth="350"/>
 
-        <!-- Duración del partido -->
+        
         <Label layoutX="50" layoutY="180" text="Duración del Partido (min):"/>
         <TextField fx:id="tf_duracion" layoutX="200" layoutY="176" prefWidth="350"/>
 
         <Separator layoutX="50" layoutY="210" prefWidth="550"/>
 
-        <!-- Botones de acción -->
+        
         <HBox layoutX="140" layoutY="230" spacing="15">
             <children>
                 <Button text="✅ Registrar Torneo" onAction="#registrarTorneo" prefWidth="150"
@@ -45,12 +45,12 @@
             </children>
         </HBox>
 
-        <!-- Mensaje -->
+        
         <Label fx:id="lbl_mensaje" layoutX="200" layoutY="270" textFill="green"/>
 
         <Separator layoutX="50" layoutY="300" prefWidth="550"/>
 
-        <!-- Tabla de torneos -->
+        
         <TableView fx:id="tablaTorneos" layoutX="50" layoutY="320" prefWidth="550" prefHeight="120">
             <columns>
                 <TableColumn fx:id="colNombre" text="🏆 Torneo" prefWidth="180"/>

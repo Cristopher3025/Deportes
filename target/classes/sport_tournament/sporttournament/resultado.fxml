@@ -1,46 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="450.0" prefWidth="650.0"
+<AnchorPane prefHeight="500.0" prefWidth="700.0"
             xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="sport_tournament.sporttournament.ResultadoController">
 
     <children>
+        <Label layoutX="200" layoutY="10" text="⚽ Registro de Resultados"
+               style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #333;"/>
 
-        <!-- Título -->
-        <Label layoutX="180" layoutY="10" text="⚽ Registro de Resultados"
-               style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+        <Separator layoutX="40" layoutY="45" prefWidth="620"/>
 
-        <Separator layoutX="50" layoutY="40" prefWidth="550"/>
+        <Label layoutX="50" layoutY="60" text="Selecciona un partido pendiente:"
+               style="-fx-font-size: 14px;"/>
+        <ComboBox fx:id="comboPartidos" layoutX="50" layoutY="85" prefWidth="600"/>
 
-        <!-- Selección de partido -->
-        <Label layoutX="50" layoutY="60" text="Selecciona un partido pendiente:"/>
-        <ComboBox fx:id="comboPartidos" layoutX="50" layoutY="80" prefWidth="550"/>
+        <TableView fx:id="tablaPartidos" layoutX="50" layoutY="130" prefWidth="600" prefHeight="150">
+            <columns>
+                <TableColumn fx:id="colEquipo1" text="Equipo 1" prefWidth="200"/>
+                <TableColumn fx:id="colEquipo2" text="Equipo 2" prefWidth="200"/>
+                <TableColumn fx:id="colEstado" text="Estado" prefWidth="200"/>
+            </columns>
+        </TableView>
 
-        <Separator layoutX="50" layoutY="110" prefWidth="550"/>
+        <Label fx:id="lblEquipo1" layoutX="150" layoutY="300" text="Equipo 1"
+               style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+        <TextField fx:id="tf_goles1" layoutX="150" layoutY="325" prefWidth="80"/>
 
-        <!-- Registro de goles -->
-        <Label fx:id="lblEquipo1" layoutX="120" layoutY="140" text="Equipo 1"/>
-        <TextField fx:id="tf_goles1" layoutX="120" layoutY="160" prefWidth="80"/>
+        <Label fx:id="lblEquipo2" layoutX="400" layoutY="300" text="Equipo 2"
+               style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
+        <TextField fx:id="tf_goles2" layoutX="400" layoutY="325" prefWidth="80"/>
 
-        <Label fx:id="lblEquipo2" layoutX="420" layoutY="140" text="Equipo 2"/>
-        <TextField fx:id="tf_goles2" layoutX="420" layoutY="160" prefWidth="80"/>
+        <Separator layoutX="40" layoutY="360" prefWidth="620"/>
 
-        <Separator layoutX="50" layoutY="200" prefWidth="550"/>
+        <Button layoutX="250" layoutY="380" text="🔄 Simular Partido"
+                style="-fx-font-size: 14px; -fx-background-color: #555; -fx-text-fill: white;"
+                onAction="#simularPartido"/>
 
-        <!-- Botón de registro -->
-        <Button layoutX="260" layoutY="220" text="✅ Registrar Resultado"
-                style="-fx-font-size: 14px; -fx-background-color: #0078D7; -fx-text-fill: white;"
+        <Button layoutX="250" layoutY="420" text="✅ Registrar Resultado"
+                style="-fx-font-size: 15px; -fx-background-color: #0078D7; -fx-text-fill: white;"
                 onAction="#registrarResultado"/>
 
-        <!-- Mensaje -->
-        <Label fx:id="lbl_mensaje" layoutX="200" layoutY="260" textFill="green"/>
-
+        <Label fx:id="lbl_mensaje" layoutX="230" layoutY="460"
+               style="-fx-font-size: 14px; -fx-text-fill: green;"/>
     </children>
 </AnchorPane>
-
 
