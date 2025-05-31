@@ -1,40 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="sport_tournament.sporttournament.EstadisticasController"
-            prefWidth="700" prefHeight="500" style="-fx-background-color: #f9f9f9;">
-    
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sport_tournament.sporttournament.InscripcionController"
+            prefWidth="650" prefHeight="450">
+
     <children>
-        <Label text="Estadísticas por Equipo" layoutX="20" layoutY="10" style="-fx-font-size: 20px;" />
-        
-        <Label text="Seleccionar equipo:" layoutX="20" layoutY="50"/>
-        <ComboBox fx:id="comboEquipos" layoutX="150" layoutY="45" prefWidth="200"/>
-        
-        <TableView fx:id="tablaTorneos" layoutX="20" layoutY="90" prefWidth="660" prefHeight="200">
-            <columns>
-                <TableColumn fx:id="colTorneo" text="Torneo" prefWidth="200"/>
-                <TableColumn fx:id="colPosicion" text="Posición" prefWidth="100"/>
-                <TableColumn fx:id="colGanados" text="Ganados" prefWidth="100"/>
-                <TableColumn fx:id="colGoles" text="Goles" prefWidth="100"/>
-                <TableColumn fx:id="colPuntos" text="Puntos" prefWidth="100"/>
-            </columns>
-        </TableView>
+        <Label layoutX="180" layoutY="10" text="📥 Inscripción a Torneo"
+               style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
 
-        <Label layoutX="20" layoutY="310" text="Estadísticas Generales:" style="-fx-font-size: 16px;"/>
-        
-        <VBox layoutX="40" layoutY="340" spacing="10">
-            <Label fx:id="lblPartidos" text="Partidos jugados: 0"/>
-            <Label fx:id="lblGanados" text="Partidos ganados: 0"/>
-            <Label fx:id="lblGoles" text="Goles anotados: 0"/>
-            <Label fx:id="lblPuntos" text="Puntos totales: 0"/>
-        </VBox>
+        <Separator layoutX="50" layoutY="40" prefWidth="550"/>
 
-        <Label layoutX="400" layoutY="310" text="Ranking Global" style="-fx-font-size: 16px;" />
-        <ListView fx:id="listaRanking" layoutX="400" layoutY="340" prefWidth="280" prefHeight="130"/>
+        <Label layoutX="50" layoutY="60" text="Selecciona un torneo:"/>
+        <ComboBox fx:id="comboTorneo" layoutX="200" layoutY="56" prefWidth="350"/>
+
+        <Separator layoutX="50" layoutY="90" prefWidth="550"/>
+
+        <Label layoutX="50" layoutY="110" text="Equipos disponibles:"/>
+        <ListView fx:id="listaEquipos" layoutX="50" layoutY="130" prefWidth="550" prefHeight="200"/>
+
+        <Separator layoutX="50" layoutY="340" prefWidth="550"/>
+
+        <Button layoutX="250" layoutY="360" text="✅ Inscribir seleccionados"
+                style="-fx-font-size: 14px; -fx-background-color: #0078D7; -fx-text-fill: white;"
+                onAction="#inscribirEquipos"/>
+
+        <Label fx:id="lbl_mensaje" layoutX="200" layoutY="400" textFill="green"/>
     </children>
 </AnchorPane>
+
 
 

@@ -1,8 +1,10 @@
 package sport_tournament.sporttournament;
 
 import database.Match;
+import database.MatchResult;
 import database.Team;
 import database_manager.MatchDAO;
+import database_manager.MatchResultDAO;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -19,6 +21,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.math.BigInteger;
 
 public class SimulacionPartidoController {
 
@@ -43,21 +46,35 @@ public class SimulacionPartidoController {
     private int segundosRestantes;
 
     public void inicializar(Team t1, Team t2, Match partido) {
-        this.equipo1 = t1;
-        this.equipo2 = t2;
-        this.partido = partido;
+    this.equipo1 = t1;
+    this.equipo2 = t2;
+    this.partido = partido;
 
-        lbl_nombre1.setText(t1.getTeamName());
-        lbl_nombre2.setText(t2.getTeamName());
+    lbl_nombre1.setText(t1.getTeamName());
+    lbl_nombre2.setText(t2.getTeamName());
 
-        img_equipo1.setImage(new Image(getClass().getResource("/" + t1.getPhotoPath()).toExternalForm()));
-        img_equipo2.setImage(new Image(getClass().getResource("/" + t2.getPhotoPath()).toExternalForm()));
+    img_equipo1.setImage(new Image(getClass().getResource("/" + t1.getPhotoPath()).toExternalForm()));
+    img_equipo2.setImage(new Image(getClass().getResource("/" + t2.getPhotoPath()).toExternalForm()));
+
+    
+    String rutaBalon = partido.getTournamentId().getSportId().getBallImagePath();
+    if (rutaBalon != null && !rutaBalon.isEmpty()) {
+        try {
+            img_balon.setImage(new Image(getClass().getResource("/" + rutaBalon).toExternalForm()));
+        } catch (Exception e) {
+            System.out.println("Error cargando imagen de balón: " + rutaBalon);
+            e.printStackTrace();
+            img_balon.setImage(new Image(getClass().getResource("/imagenes/ball/football.jpg").toExternalForm()));
+        }
+    } else {
         img_balon.setImage(new Image(getClass().getResource("/imagenes/ball/football.jpg").toExternalForm()));
-
-        habilitarArrastre();
-        actualizarMarcador();
-        iniciarTemporizador();
     }
+
+    habilitarArrastre();
+    actualizarMarcador();
+    iniciarTemporizador();
+}
+
 
     private void habilitarArrastre() {
         img_balon.setOnMousePressed(e -> {
@@ -112,6 +129,21 @@ public class SimulacionPartidoController {
 
         if (temporizador != null) temporizador.stop();
 
+        MatchResultDAO resultDAO = new MatchResultDAO();
+
+        
+        MatchResult r1 = new MatchResult();
+        r1.setMatchId(partido);
+        r1.setTeamId(equipo1);
+        r1.setGoals(BigInteger.valueOf(goles1));
+        resultDAO.addResult(r1);
+
+        MatchResult r2 = new MatchResult();
+        r2.setMatchId(partido);
+        r2.setTeamId(equipo2);
+        r2.setGoals(BigInteger.valueOf(goles2));
+        resultDAO.addResult(r2);
+
         if (goles1 != goles2) {
             partido.setWinnerId(goles1 > goles2 ? equipo1 : equipo2);
             partido.setStatus("Finalizado");
@@ -132,6 +164,8 @@ public class SimulacionPartidoController {
                         new MatchDAO().updateMatch(partido);
                         btn_finalizar.setDisable(true);
                         actualizarMarcador();
+                        new TorneoService().avanzarSiEsNecesario(partido.getTournamentId());
+
                     }
                 });
 
@@ -145,6 +179,7 @@ public class SimulacionPartidoController {
             }
         }
     }
+
 }
 
 

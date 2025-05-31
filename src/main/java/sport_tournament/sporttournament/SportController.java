@@ -37,26 +37,33 @@ public class SportController {
     }
 
     @FXML
-    public void initialize() {
-        instancia = this;
+public void initialize() {
+    instancia = this;
 
-        colId.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getSportId().toString()));
-        colNombre.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getSportName()));
-        colImagen.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getBallImagePath()));
-        cargarDeportes();
+    colId.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getSportId().toString()));
+    colNombre.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getSportName()));
+    colImagen.setCellValueFactory(data -> new javafx.beans.property.SimpleStringProperty(data.getValue().getBallImagePath()));
 
-        tablaDeportes.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
-            if (newVal != null) {
-                tf_sport_name.setText(newVal.getSportName());
-                List<Integer> valores = anotacionesPorDeporte.get(newVal.getSportName().toLowerCase());
-                if (valores != null) {
-                    tf_puntuaciones.setText(valores.toString().replace("[", "").replace("]", ""));
-                } else {
-                    tf_puntuaciones.setText("");
-                }
+    cargarDeportes();
+
+    tablaDeportes.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+        if (newVal != null) {
+            tf_sport_name.setText(newVal.getSportName());
+            List<Integer> valores = anotacionesPorDeporte.get(newVal.getSportName().toLowerCase());
+            if (valores != null) {
+                tf_puntuaciones.setText(valores.toString().replace("[", "").replace("]", ""));
+            } else {
+                tf_puntuaciones.setText("");
             }
-        });
+        }
+    });
+
+    
+    for (Sport sport : deportes) {
+        anotacionesPorDeporte.put(sport.getSportName().toLowerCase(), parsearPuntajes(sport.getSportName()));
     }
+}
+
 
     private void cargarDeportes() {
         deportes.setAll(dao.findAll());
@@ -77,36 +84,48 @@ public class SportController {
     }
 
 
+    private List<Integer> parsearPuntajes(String nombre) {
     
+    Sport encontrado = dao.findSportByName(nombre);
+    if (encontrado != null) {
+        String nombreLower = encontrado.getSportName().toLowerCase();
+        if (anotacionesPorDeporte.containsKey(nombreLower)) {
+            return anotacionesPorDeporte.get(nombreLower);
+        }
+        
+    }
+    return null;
+}
+
     @FXML
     private void agregarNombre(ActionEvent event) {
-        String nombre = tf_sport_name.getText().trim();
-        String puntosRaw = tf_puntuaciones.getText().trim();
+    String nombre = tf_sport_name.getText().trim();
+    String puntosRaw = tf_puntuaciones.getText().trim();
 
-        if (nombre.isEmpty()) {
-            lbl_mensaje.setText("Ingrese un nombre.");
-            return;
-        }
-
-        List<Integer> valores = new ArrayList<>();
-        try {
-            for (String s : puntosRaw.split(",")) {
-                valores.add(Integer.parseInt(s.trim()));
-            }
-        } catch (NumberFormatException e) {
-            lbl_mensaje.setText("Valores de anotación inválidos.");
-            return;
-        }
-
-        Sport sport = new Sport(nombre);
-        dao.addSport(sport);
-        anotacionesPorDeporte.put(nombre.toLowerCase(), valores);
-
-        lbl_mensaje.setText("Deporte agregado con anotaciones.");
-        cargarDeportes();
-        sport.setBallImagePath(tf_ball_path.getText().trim());
-
+    if (nombre.isEmpty()) {
+        lbl_mensaje.setText("Ingrese un nombre.");
+        return;
     }
+
+    List<Integer> valores = new ArrayList<>();
+    try {
+        for (String s : puntosRaw.split(",")) {
+            valores.add(Integer.parseInt(s.trim()));
+        }
+    } catch (NumberFormatException e) {
+        lbl_mensaje.setText("Valores de anotación inválidos.");
+        return;
+    }
+
+    Sport sport = new Sport(nombre);
+    sport.setBallImagePath(tf_ball_path.getText().trim()); 
+    dao.addSport(sport); 
+    anotacionesPorDeporte.put(nombre.toLowerCase(), valores);
+
+    lbl_mensaje.setText("Deporte agregado con anotaciones.");
+    cargarDeportes();
+}
+
 
     @FXML
     private void buscarNombre(ActionEvent event) {

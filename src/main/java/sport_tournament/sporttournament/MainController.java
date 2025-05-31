@@ -1,10 +1,20 @@
 package sport_tournament.sporttournament;
 
+import database.Match;
+import database.Team;
+import database.Tournament;
+import database_manager.MatchDAO;
+import database_manager.TournamentDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 
 public class MainController {
 
@@ -75,6 +85,71 @@ public class MainController {
 
 
     public void mostrarCertificados() {
-        // Pendiente
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("certificado.fxml"));
+        Parent root = loader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Generar Certificado");
+        stage.show();
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
+
+
+    
+    public Team obtenerUltimoCampeon() {
+    List<Tournament> torneos = new TournamentDAO().findAll();
+
+    for (int i = torneos.size() - 1; i >= 0; i--) {
+        Tournament torneo = torneos.get(i);
+        List<Match> partidos = new MatchDAO().findByTournament(torneo);
+
+        boolean todosFinalizados = partidos.stream()
+            .allMatch(m -> "Finalizado".equalsIgnoreCase(m.getStatus()));
+
+        if (todosFinalizados) {
+            List<Team> ganadores = partidos.stream()
+                .map(Match::getWinnerId)
+                .distinct()
+                .collect(Collectors.toList());
+
+            if (ganadores.size() == 1) {
+                return ganadores.get(0);
+            }
+        }
+    }
+
+    return null;
+}
+
+
+
+    public Tournament obtenerTorneoGanado(Team equipo) {
+        List<Tournament> torneos = new TournamentDAO().findAll();
+
+        for (int i = torneos.size() - 1; i >= 0; i--) {
+            Tournament torneo = torneos.get(i);
+            List<Match> partidos = new MatchDAO().findByTournament(torneo);
+
+            boolean todosFinalizados = partidos.stream()
+                .allMatch(m -> "Finalizado".equalsIgnoreCase(m.getStatus()));
+
+            if (todosFinalizados) {
+                long ganados = partidos.stream()
+                    .filter(m -> equipo.equals(m.getWinnerId()))
+                    .count();
+
+                long total = partidos.stream().map(Match::getWinnerId).distinct().count();
+
+                if (ganados > 0 && total == 1) {
+                    return torneo;
+                }
+            }
+        }
+
+        return null;
+    }
+
 }

@@ -27,11 +27,11 @@
 
         <Label fx:id="lblEquipo1" layoutX="150" layoutY="300" text="Equipo 1"
                style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
-        <TextField fx:id="tf_goles1" layoutX="150" layoutY="325" prefWidth="80"/>
+        
 
         <Label fx:id="lblEquipo2" layoutX="400" layoutY="300" text="Equipo 2"
                style="-fx-font-size: 14px; -fx-font-weight: bold;"/>
-        <TextField fx:id="tf_goles2" layoutX="400" layoutY="325" prefWidth="80"/>
+        
 
         <Separator layoutX="40" layoutY="360" prefWidth="620"/>
 
@@ -39,9 +39,7 @@
                 style="-fx-font-size: 14px; -fx-background-color: #555; -fx-text-fill: white;"
                 onAction="#simularPartido"/>
 
-        <Button layoutX="250" layoutY="420" text="✅ Registrar Resultado"
-                style="-fx-font-size: 15px; -fx-background-color: #0078D7; -fx-text-fill: white;"
-                onAction="#registrarResultado"/>
+        
 
         <Label fx:id="lbl_mensaje" layoutX="230" layoutY="460"
                style="-fx-font-size: 14px; -fx-text-fill: green;"/>

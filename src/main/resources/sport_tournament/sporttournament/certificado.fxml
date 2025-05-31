@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="sport_tournament.sporttournament.CertificadoController"
+            prefWidth="450" prefHeight="250">
+    <VBox alignment="CENTER" spacing="15" AnchorPane.topAnchor="20" AnchorPane.bottomAnchor="20"
+          AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="30" style="-fx-background-color: #f4f4f4; -fx-border-radius: 10;">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+        <Label text="Selecciona un torneo finalizado:"
+               style="-fx-font-size: 14px; -fx-font-weight: bold; -fx-text-fill: #333;"/>
+        <ComboBox fx:id="comboTorneos" prefWidth="320" style="-fx-background-radius: 5;"/>
+        <Button text="Generar Certificado" onAction="#generarCertificado"
+                style="-fx-background-color: #008CBA; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 5;"/>
+    </VBox>
+</AnchorPane>
+

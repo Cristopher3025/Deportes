@@ -1,6 +1,7 @@
 package database_manager;
 
 import database.Match;
+import database.Team;
 import database.Tournament;
 import jakarta.persistence.*;
 import java.util.List;
@@ -36,6 +37,12 @@ public class MatchDAO {
     return em.createQuery("SELECT m FROM Match m", Match.class).getResultList();
     }
 
+    public int getPartidosGanados(Tournament torneo, Team equipo) {
+    List<Match> matches = findByTournament(torneo);
+    return (int) matches.stream()
+            .filter(m -> equipo.equals(m.getWinnerId()))
+            .count();
+}
 
 
 }
