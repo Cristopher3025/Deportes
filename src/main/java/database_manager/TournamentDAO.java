@@ -31,4 +31,18 @@ public class TournamentDAO {
     public List<Tournament> findAll() {
         return em.createNamedQuery("Tournament.findAll", Tournament.class).getResultList();
     }
+    
+    public void updateTournament(Tournament torneo) {
+    em.getTransaction().begin();
+    em.merge(torneo);
+    em.getTransaction().commit();
+    }
+    
+    public void deleteTournament(Tournament torneo) {
+    em.getTransaction().begin();
+    torneo = em.merge(torneo);
+    em.remove(torneo);
+    em.getTransaction().commit();
+    }
+
 }

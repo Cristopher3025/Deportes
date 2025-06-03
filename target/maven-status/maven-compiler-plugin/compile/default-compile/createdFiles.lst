@@ -1,4 +1,5 @@
 sport_tournament\sporttournament\TournamentController.class
+sport_tournament\sporttournament\TournamentController$2.class
 database\TournamentTeam.class
 sport_tournament\sporttournament\App.class
 sport_tournament\sporttournament\CertificadoController$2.class
@@ -12,6 +13,7 @@ sport_tournament\sporttournament\CertificadoController.class
 sport_tournament\sporttournament\TorneoService.class
 sport_tournament\sporttournament\SimulacionPartidoController.class
 database_manager\TeamDAO.class
+sport_tournament\sporttournament\EsquemaTorneoController.class
 database_manager\MatchDAO.class
 sport_tournament\sporttournament\InscripcionController.class
 sport_tournament\sporttournament\SportController.class
@@ -24,6 +26,7 @@ sport_tournament\sporttournament\MainController.class
 sport_tournament\sporttournament\CertificadoService.class
 sport_tournament\sporttournament\PartidoController.class
 database\Sport.class
+sport_tournament\sporttournament\TournamentController$1.class
 sport_tournament\sporttournament\TeamController.class
 sport_tournament\sporttournament\EstadisticasController.class
 sport_tournament\sporttournament\DesempateController.class

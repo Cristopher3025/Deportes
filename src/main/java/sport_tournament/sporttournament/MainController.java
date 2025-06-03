@@ -95,8 +95,44 @@ public class MainController {
     } catch (IOException e) {
         e.printStackTrace();
     }
-}
+    }
 
+    @FXML
+    public void mostrarEsquemaTorneo() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("esquema_torneo.fxml"));
+            Parent root = loader.load();
+
+            EsquemaTorneoController controller = loader.getController();
+            Tournament ultimo = obtenerTorneoFinalizado();
+            if (ultimo == null) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setHeaderText("No hay torneo finalizado aún.");
+                alert.showAndWait();
+                return;
+            }
+            controller.setTorneoSeleccionado(ultimo);
+
+            Stage stage = new Stage();
+            stage.setTitle("Esquema del Torneo");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Tournament obtenerTorneoFinalizado() {
+        List<Tournament> torneos = new TournamentDAO().findAll();
+        for (int i = torneos.size() - 1; i >= 0; i--) {
+            Tournament torneo = torneos.get(i);
+            if ("Finalizado".equalsIgnoreCase(torneo.getEstado())) {
+                return torneo;
+            }
+        }
+        return null;
+    }
 
     
     public Team obtenerUltimoCampeon() {

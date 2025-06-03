@@ -58,7 +58,7 @@ public class CertificadoService {
         content.beginText();
         content.setFont(PDType1Font.HELVETICA, 14);
         content.newLineAtOffset(100, 580);
-        content.showText("Goles anotados: " + goles);
+        content.showText("Cantidad de anotaciones: " + goles);
         content.endText();
 
         if (campeon.getPhotoPath() != null) {

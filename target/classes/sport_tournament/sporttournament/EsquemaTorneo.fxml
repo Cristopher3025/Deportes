@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sport_tournament.sporttournament.EsquemaTorneoController"
+            prefWidth="800" prefHeight="600">
+    <Label text="Esquema del Torneo" layoutX="320" layoutY="20"
+           style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+    <Canvas fx:id="canvasEsquema" layoutX="20" layoutY="60"
+            width="760" height="500"/>
+</AnchorPane>
+
+

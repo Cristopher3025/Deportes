@@ -29,18 +29,13 @@ public class CertificadoController implements Initializable {
         List<Tournament> finalizados = new ArrayList<>();
 
         for (Tournament torneo : todos) {
-            List<Match> partidos = new MatchDAO().findByTournament(torneo);
-            boolean todosFinalizados = partidos.stream().allMatch(m -> "Finalizado".equalsIgnoreCase(m.getStatus()));
-            long ganadoresUnicos = partidos.stream().map(Match::getWinnerId).distinct().count();
-
-            if (todosFinalizados && ganadoresUnicos == 1) {
+            if ("Finalizado".equalsIgnoreCase(torneo.getEstado())) {
                 finalizados.add(torneo);
             }
         }
 
         comboTorneos.setItems(FXCollections.observableArrayList(finalizados));
 
-        
         comboTorneos.setCellFactory(lv -> new ListCell<>() {
             @Override
             protected void updateItem(Tournament item, boolean empty) {
@@ -58,14 +53,14 @@ public class CertificadoController implements Initializable {
         });
     }
 
-
     @FXML
     private void generarCertificado() {
         Tournament torneo = comboTorneos.getSelectionModel().getSelectedItem();
         if (torneo == null) return;
 
         List<Match> partidos = new MatchDAO().findByTournament(torneo);
-        Team campeon = partidos.get(0).getWinnerId(); // todos deben tener el mismo
+        Team campeon = partidos.get(0).getWinnerId();
+
         CertificadoService.generarCertificado(torneo, campeon);
 
         String filePath = "src/main/resources/Certificados/certificado_" +
@@ -87,3 +82,4 @@ public class CertificadoController implements Initializable {
         ((Stage) comboTorneos.getScene().getWindow()).close();
     }
 }
+

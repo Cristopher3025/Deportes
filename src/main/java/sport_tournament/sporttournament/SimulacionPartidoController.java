@@ -3,8 +3,10 @@ package sport_tournament.sporttournament;
 import database.Match;
 import database.MatchResult;
 import database.Team;
+import database.Tournament;
 import database_manager.MatchDAO;
 import database_manager.MatchResultDAO;
+import database_manager.TournamentDAO;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -22,6 +24,8 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.math.BigInteger;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class SimulacionPartidoController {
 
@@ -46,35 +50,31 @@ public class SimulacionPartidoController {
     private int segundosRestantes;
 
     public void inicializar(Team t1, Team t2, Match partido) {
-    this.equipo1 = t1;
-    this.equipo2 = t2;
-    this.partido = partido;
+        this.equipo1 = t1;
+        this.equipo2 = t2;
+        this.partido = partido;
 
-    lbl_nombre1.setText(t1.getTeamName());
-    lbl_nombre2.setText(t2.getTeamName());
+        lbl_nombre1.setText(t1.getTeamName());
+        lbl_nombre2.setText(t2.getTeamName());
 
-    img_equipo1.setImage(new Image(getClass().getResource("/" + t1.getPhotoPath()).toExternalForm()));
-    img_equipo2.setImage(new Image(getClass().getResource("/" + t2.getPhotoPath()).toExternalForm()));
+        img_equipo1.setImage(new Image(getClass().getResource("/" + t1.getPhotoPath()).toExternalForm()));
+        img_equipo2.setImage(new Image(getClass().getResource("/" + t2.getPhotoPath()).toExternalForm()));
 
-    
-    String rutaBalon = partido.getTournamentId().getSportId().getBallImagePath();
-    if (rutaBalon != null && !rutaBalon.isEmpty()) {
-        try {
-            img_balon.setImage(new Image(getClass().getResource("/" + rutaBalon).toExternalForm()));
-        } catch (Exception e) {
-            System.out.println("Error cargando imagen de balón: " + rutaBalon);
-            e.printStackTrace();
+        String rutaBalon = partido.getTournamentId().getSportId().getBallImagePath();
+        if (rutaBalon != null && !rutaBalon.isEmpty()) {
+            try {
+                img_balon.setImage(new Image(getClass().getResource("/" + rutaBalon).toExternalForm()));
+            } catch (Exception e) {
+                img_balon.setImage(new Image(getClass().getResource("/imagenes/ball/football.jpg").toExternalForm()));
+            }
+        } else {
             img_balon.setImage(new Image(getClass().getResource("/imagenes/ball/football.jpg").toExternalForm()));
         }
-    } else {
-        img_balon.setImage(new Image(getClass().getResource("/imagenes/ball/football.jpg").toExternalForm()));
+
+        habilitarArrastre();
+        actualizarMarcador();
+        iniciarTemporizador();
     }
-
-    habilitarArrastre();
-    actualizarMarcador();
-    iniciarTemporizador();
-}
-
 
     private void habilitarArrastre() {
         img_balon.setOnMousePressed(e -> {
@@ -131,7 +131,6 @@ public class SimulacionPartidoController {
 
         MatchResultDAO resultDAO = new MatchResultDAO();
 
-        
         MatchResult r1 = new MatchResult();
         r1.setMatchId(partido);
         r1.setTeamId(equipo1);
@@ -150,6 +149,7 @@ public class SimulacionPartidoController {
             new MatchDAO().updateMatch(partido);
             btn_finalizar.setDisable(true);
             actualizarMarcador();
+            mostrarCampeonSiAplica(partido);
         } else {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("desempate.fxml"));
@@ -165,7 +165,7 @@ public class SimulacionPartidoController {
                         btn_finalizar.setDisable(true);
                         actualizarMarcador();
                         new TorneoService().avanzarSiEsNecesario(partido.getTournamentId());
-
+                        mostrarCampeonSiAplica(partido);
                     }
                 });
 
@@ -173,13 +173,34 @@ public class SimulacionPartidoController {
                 stage.setScene(new Scene(root));
                 stage.setTitle("Desempate");
                 stage.showAndWait();
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
+
+    private void mostrarCampeonSiAplica(Match partido) {
+        MatchDAO matchDAO = new MatchDAO();
+        List<Match> restantes = matchDAO.findByTournament(partido.getTournamentId())
+        .stream().filter(m -> !"Finalizado".equalsIgnoreCase(m.getStatus()))
+        .collect(Collectors.toList());
+
+
+        if (restantes.isEmpty()) {
+            Tournament torneo = partido.getTournamentId();
+            torneo.setEstado("Finalizado");
+            new TournamentDAO().updateTournament(torneo);
+
+            Team campeon = partido.getWinnerId();
+        try {
+            CampeonController.mostrar(campeon);
+            CertificadoService.generarCertificado(torneo, campeon);
+        } catch (Exception e) {
+            e.printStackTrace();
 }
 
+        }
+    }
 
+}

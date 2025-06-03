@@ -10,9 +10,9 @@ public class MatchDAO {
     private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("tournament_persistence");
     private final EntityManager em = emf.createEntityManager();
 
-    public void addMatch(Match m) {
+    public void addMatch(Match match) {
         em.getTransaction().begin();
-        em.persist(m);
+        em.persist(match);
         em.getTransaction().commit();
     }
     
@@ -42,7 +42,7 @@ public class MatchDAO {
     return (int) matches.stream()
             .filter(m -> equipo.equals(m.getWinnerId()))
             .count();
-}
-
-
+    }
+    
+   
 }

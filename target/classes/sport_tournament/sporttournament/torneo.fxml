@@ -1,65 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="450.0" prefWidth="650.0"
+<AnchorPane prefHeight="500.0" prefWidth="700.0"
             xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sport_tournament.sporttournament.TournamentController">
+            fx:controller="sport_tournament.sporttournament.TournamentController"
+            style="-fx-background-color: #f9f9f9; -fx-padding: 20;">
 
-    <children>
+    <VBox spacing="15" alignment="TOP_CENTER">
+        <Label text="🏆 Gestión de Torneos" style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
+        <Separator prefWidth="650"/>
 
-        
-        <Label layoutX="180" layoutY="10" text="🏆 Gestión de Torneos"
-               style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+        <VBox spacing="10" prefWidth="650">
+            <HBox spacing="10">
+                <Label text="Nombre del Torneo:"/>
+                <TextField fx:id="tf_nombre" prefWidth="400"/>
+            </HBox>
+            <HBox spacing="10">
+                <Label text="Deporte:"/>
+                <ComboBox fx:id="combo_deporte" prefWidth="400"/>
+            </HBox>
+            <HBox spacing="10">
+                <Label text="Cantidad de Equipos:"/>
+                <TextField fx:id="tf_cantidad" prefWidth="400"/>
+            </HBox>
+            <HBox spacing="10">
+                <Label text="Duración del Partido (min):"/>
+                <TextField fx:id="tf_duracion" prefWidth="400"/>
+            </HBox>
+        </VBox>
 
-        <Separator layoutX="50" layoutY="40" prefWidth="550"/>
+        <Separator prefWidth="650"/>
 
-        
-        <Label layoutX="50" layoutY="60" text="Nombre del Torneo:"/>
-        <TextField fx:id="tf_nombre" layoutX="200" layoutY="56" prefWidth="350"/>
-
-        
-        <Label layoutX="50" layoutY="100" text="Deporte:"/>
-        <ComboBox fx:id="combo_deporte" layoutX="200" layoutY="96" prefWidth="350"/>
-
-        
-        <Label layoutX="50" layoutY="140" text="Cantidad de Equipos:"/>
-        <TextField fx:id="tf_cantidad" layoutX="200" layoutY="136" prefWidth="350"/>
-
-        
-        <Label layoutX="50" layoutY="180" text="Duración del Partido (min):"/>
-        <TextField fx:id="tf_duracion" layoutX="200" layoutY="176" prefWidth="350"/>
-
-        <Separator layoutX="50" layoutY="210" prefWidth="550"/>
-
-        
-        <HBox layoutX="140" layoutY="230" spacing="15">
-            <children>
-                <Button text="✅ Registrar Torneo" onAction="#registrarTorneo" prefWidth="150"
-                        style="-fx-font-size: 14px; -fx-background-color: #0078D7; -fx-text-fill: white;"/>
-                <Button text="🔀 Generar Llaves" onAction="#generarLlaves" prefWidth="150"
-                        style="-fx-font-size: 14px; -fx-background-color: #28A745; -fx-text-fill: white;"/>
-            </children>
+        <HBox spacing="10">
+            <Label text="Selecciona un torneo para ver el esquema:"/>
+            <ComboBox fx:id="comboTorneo" prefWidth="400"/>
         </HBox>
 
-        
-        <Label fx:id="lbl_mensaje" layoutX="200" layoutY="270" textFill="green"/>
+        <Separator prefWidth="650"/>
 
-        <Separator layoutX="50" layoutY="300" prefWidth="550"/>
+        <HBox spacing="20" alignment="CENTER">
+            <Button text="✅ Registrar Torneo" onAction="#registrarTorneo" prefWidth="180"
+                    style="-fx-font-size: 14px; -fx-background-color: #0078D7; -fx-text-fill: white;"/>
+            <Button text="🗑 Eliminar Torneo" onAction="#eliminarTorneo" prefWidth="180"
+                    style="-fx-background-color: #D9534F; -fx-text-fill: white; -fx-font-size: 14px;"/>
+            <Button text="🔀 Generar Llaves" onAction="#generarLlaves" prefWidth="180"
+                    style="-fx-font-size: 14px; -fx-background-color: #28A745; -fx-text-fill: white;"/>
+            <Button text="📊 Ver Esquema" onAction="#mostrarEsquemaTorneo" prefWidth="180"
+                    style="-fx-background-color: #0078D7; -fx-text-fill: white; -fx-font-size: 14px;"/>
+        </HBox>
 
-        
-        <TableView fx:id="tablaTorneos" layoutX="50" layoutY="320" prefWidth="550" prefHeight="120">
+        <Label fx:id="lbl_mensaje" textFill="green" style="-fx-font-size: 14px;"/>
+        <Separator prefWidth="650"/>
+
+        <TableView fx:id="tablaTorneos" prefWidth="650" prefHeight="150">
             <columns>
                 <TableColumn fx:id="colNombre" text="🏆 Torneo" prefWidth="180"/>
                 <TableColumn fx:id="colDeporte" text="⚽ Deporte" prefWidth="180"/>
-                <TableColumn fx:id="colEquipos" text="👥 Equipos" prefWidth="100"/>
-                <TableColumn fx:id="colDuracion" text="⏳ Duración" prefWidth="100"/>
+                <TableColumn fx:id="colEquipos" text="👥 Equipos" prefWidth="120"/>
+                <TableColumn fx:id="colDuracion" text="⏳ Duración" prefWidth="120"/>
             </columns>
         </TableView>
+    </VBox>
 
-    </children>
 </AnchorPane>
-

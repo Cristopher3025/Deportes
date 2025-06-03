@@ -69,6 +69,8 @@ public class Tournament implements Serializable {
     private Sport sportId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "tournamentId")
     private Collection<Match> matchCollection;
+    @Column(name = "ESTADO")
+    private String estado;
 
     public Tournament() {
     }
@@ -140,7 +142,15 @@ public class Tournament implements Serializable {
     public void setSportId(Sport sportId) {
         this.sportId = sportId;
     }
+    
+    public String getEstado() {
+    return estado;
+    }
 
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
     @XmlTransient
     public Collection<Match> getMatchCollection() {
         return matchCollection;
