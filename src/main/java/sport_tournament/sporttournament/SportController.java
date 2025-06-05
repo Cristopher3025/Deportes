@@ -113,6 +113,7 @@ public void initialize() {
             valores.add(Integer.parseInt(s.trim()));
         }
     } catch (NumberFormatException e) {
+        SoundManager.playSound("error.mp3");
         lbl_mensaje.setText("Valores de anotación inválidos.");
         return;
     }
@@ -137,6 +138,7 @@ public void initialize() {
             tf_puntuaciones.setText(valores != null ? valores.toString().replace("[", "").replace("]", "") : "");
             lbl_mensaje.setText("Encontrado.");
         } else {
+            SoundManager.playSound("error.mp3");
             lbl_mensaje.setText("No existe.");
         }
     }
@@ -151,6 +153,7 @@ public void initialize() {
             lbl_mensaje.setText("Modificado.");
             cargarDeportes();
         } else {
+            SoundManager.playSound("error.mp3");
             lbl_mensaje.setText("No encontrado.");
         }
     }
@@ -165,6 +168,7 @@ public void initialize() {
             lbl_mensaje.setText("Eliminado.");
             cargarDeportes();
         } else {
+            SoundManager.playSound("error.mp3");
             lbl_mensaje.setText("No encontrado.");
         }
     }

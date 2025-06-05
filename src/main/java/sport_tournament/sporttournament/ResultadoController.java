@@ -44,9 +44,15 @@ public class ResultadoController {
         partidos = matchDAO.findPendientes();
 
         if (partidos == null || partidos.isEmpty()) {
-            lbl_mensaje.setText("No hay partidos pendientes.");
+            SoundManager.playSound("error.mp3");
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("Información");
+            alerta.setHeaderText("Sin partidos pendientes");
+            alerta.setContentText("Actualmente no hay partidos pendientes para ingresar resultados.");
+            alerta.showAndWait();
             return;
         }
+
 
         List<String> nombres = new ArrayList<>();
         for (Match m : partidos) {
@@ -72,6 +78,7 @@ public class ResultadoController {
     private void simularPartido() {
         Match partido = tablaPartidos.getSelectionModel().getSelectedItem();
         if (partido == null) {
+            SoundManager.playSound("error.mp3");
             lbl_mensaje.setText("Seleccione un partido");
             return;
         }

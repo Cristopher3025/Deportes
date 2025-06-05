@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import java.util.stream.Collectors;
 import javafx.scene.control.ListCell;
 
 public class CertificadoController implements Initializable {
@@ -59,7 +60,34 @@ public class CertificadoController implements Initializable {
         if (torneo == null) return;
 
         List<Match> partidos = new MatchDAO().findByTournament(torneo);
-        Team campeon = partidos.get(0).getWinnerId();
+
+        int rondaMaxima = partidos.stream()
+            .filter(m -> m.getRoundNumber() != null)
+            .mapToInt(Match::getRoundNumber)
+            .max()
+            .orElse(-1);
+
+        List<Match> finales = partidos.stream()
+        .filter(m -> m.getRoundNumber() != null && m.getRoundNumber() == rondaMaxima)
+        .collect(Collectors.toList());
+
+        List<Team> ganadores = finales.stream()
+        .map(Match::getWinnerId)
+        .filter(Objects::nonNull)
+        .distinct()
+        .collect(Collectors.toList());
+
+
+        if (ganadores.size() != 1) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("No se puede determinar el campeón");
+            alert.setContentText("Verifica que todos los partidos hayan sido finalizados correctamente.");
+            alert.showAndWait();
+            return;
+        }
+
+        Team campeon = ganadores.get(0);
 
         CertificadoService.generarCertificado(torneo, campeon);
 
@@ -81,5 +109,6 @@ public class CertificadoController implements Initializable {
 
         ((Stage) comboTorneos.getScene().getWindow()).close();
     }
+
 }
 

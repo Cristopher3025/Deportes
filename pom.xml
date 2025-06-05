@@ -26,6 +26,11 @@
             <version>13</version>
         </dependency>
         <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>13</version>
+        </dependency>
+        <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>
             <version>4.0.2</version>
@@ -35,8 +40,6 @@
             <artifactId>ojdbc11</artifactId>
             <version>23.7.0.25.01</version>
         </dependency>
-
-        <!-- 📄 PDFBox para generar certificados -->
         <dependency>
             <groupId>org.apache.pdfbox</groupId>
             <artifactId>pdfbox</artifactId>
@@ -98,4 +101,3 @@
         </plugins>
     </build>
 </project>
-

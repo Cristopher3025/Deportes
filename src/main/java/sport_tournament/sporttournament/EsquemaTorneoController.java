@@ -28,7 +28,7 @@ public class EsquemaTorneoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        dibujarEsquema();
+       
     }
 
     private void dibujarEsquema() {
@@ -73,12 +73,12 @@ public class EsquemaTorneoController implements Initializable {
                     gc.fillText("Ganador: " + match.getWinnerId().getTeamName(), x, y + 15);
                 }
 
-                // Guardamos coordenadas para conectar rondas
+               
                 coordenadas.put(match, new Double[] { (double) x, (double) y });
             }
         }
 
-        // Dibujar líneas entre partidos consecutivos (visual)
+       
         for (Match match : coordenadas.keySet()) {
             if (match.getWinnerId() != null) {
                 Match siguiente = encontrarSiguienteMatch(match.getWinnerId(), match.getRoundNumber() + 1, todosLosPartidos);
@@ -100,6 +100,12 @@ public class EsquemaTorneoController implements Initializable {
             rondas.computeIfAbsent(match.getRoundNumber(), k -> new ArrayList<>()).add(match);
         }
         return rondas;
+    }
+    
+    public void cargarEsquema() {
+        if (torneoSeleccionado != null) {
+            dibujarEsquema();
+        }
     }
 
     private Match encontrarSiguienteMatch(database.Team ganador, int rondaBuscada, List<Match> partidos) {

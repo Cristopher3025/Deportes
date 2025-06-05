@@ -64,6 +64,7 @@ public class InscripcionController {
         List<String> equiposSeleccionados = listaEquipos.getSelectionModel().getSelectedItems();
 
         if (nombreTorneo == null || equiposSeleccionados.isEmpty()) {
+            SoundManager.playSound("error.mp3");
             lbl_mensaje.setText("Seleccione torneo y equipos.");
             return;
         }

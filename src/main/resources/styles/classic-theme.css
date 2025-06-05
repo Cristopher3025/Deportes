@@ -1,0 +1,38 @@
+.root {
+    -fx-background-color: beige;
+}
+
+.label {
+    -fx-text-fill: black;
+    -fx-font-family: "Georgia";
+}
+
+.button {
+    -fx-background-color: sienna;
+    -fx-text-fill: white;
+}
+
+.title-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.label-bold {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.label-normal {
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+}
+
+.primary-button {
+    -fx-font-size: 14px;
+    -fx-background-color: #0078D7;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}

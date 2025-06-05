@@ -1,0 +1,84 @@
+.root {
+    -fx-background-color: #e0ffe0;
+}
+
+.label {
+    -fx-text-fill: #007f00;
+    -fx-font-weight: bold;
+}
+
+.button {
+    -fx-background-color: #33cc33;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.titulo-principal {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #222;
+}
+
+.menu-lateral {
+    -fx-background-color: transparent;
+    -fx-padding: 20;
+}
+
+.menu-titulo {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.menu-etiqueta {
+    -fx-font-size: 14px;
+}
+
+.boton-menu {
+    -fx-font-size: 14px;
+    -fx-pref-width: 160px;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-cursor: hand;
+}
+
+.boton-secundario {
+    -fx-background-color: #cccccc;
+    -fx-text-fill: #000000;
+    -fx-pref-width: 160px;
+}
+
+.boton-salir {
+    -fx-background-color: #cc0000;
+    -fx-text-fill: white;
+    -fx-pref-width: 160px;
+    -fx-font-weight: bold;
+}
+
+.fondo-central {
+    -fx-background-color: transparent;
+}
+
+.title-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.label-bold {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.label-normal {
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
+}
+
+.primary-button {
+    -fx-font-size: 14px;
+    -fx-background-color: #0078D7;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}

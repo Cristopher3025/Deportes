@@ -84,9 +84,11 @@ public class TeamController {
                 lbl_mensaje.setText("Equipo agregado.");
                 cargarEquipos();
             } else {
+                SoundManager.playSound("error.mp3");
                 lbl_mensaje.setText("Deporte no encontrado.");
             }
         } else {
+            SoundManager.playSound("error.mp3");
             lbl_mensaje.setText("Complete todos los campos.");
         }
     }
@@ -101,6 +103,7 @@ public class TeamController {
             combo_deportes.setValue(equipo.getSportId().getSportName());
             lbl_mensaje.setText("Equipo encontrado.");
         } else {
+            SoundManager.playSound("error.mp3");
             lbl_mensaje.setText("No existe.");
         }
     }
@@ -115,6 +118,7 @@ public class TeamController {
             lbl_mensaje.setText("Modificado.");
             cargarEquipos();
         } else {
+            SoundManager.playSound("error.mp3");
             lbl_mensaje.setText("No existe.");
         }
     }
@@ -128,6 +132,7 @@ public class TeamController {
             lbl_mensaje.setText("Eliminado.");
             cargarEquipos();
         } else {
+            SoundManager.playSound("error.mp3");
             lbl_mensaje.setText("No existe.");
         }
     }

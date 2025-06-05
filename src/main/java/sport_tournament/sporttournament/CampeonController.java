@@ -54,6 +54,7 @@ public class CampeonController {
         stage.setTitle("¡Campeón del Torneo!");
         stage.setScene(new Scene(root));
         stage.show();
+        SoundManager.playSound("campeon.mp3");
     }
 
 }

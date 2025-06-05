@@ -1,15 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.scene.canvas.Canvas?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="sport_tournament.sporttournament.EsquemaTorneoController"
-            prefWidth="800" prefHeight="600">
-    <Label text="Esquema del Torneo" layoutX="320" layoutY="20"
-           style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
-    <Canvas fx:id="canvasEsquema" layoutX="20" layoutY="60"
-            width="760" height="500"/>
+            prefWidth="900" prefHeight="650"
+            stylesheets="@../styles/sport-theme.css">
+
+    <VBox alignment="TOP_CENTER" spacing="25" layoutX="25" layoutY="25"
+          AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0"
+          AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0"
+          styleClass="contenedor-esquema">
+
+        <Label text="Esquema del Torneo"
+               styleClass="titulo-principal"/>
+
+        <StackPane styleClass="esquema-contenedor" maxWidth="850" maxHeight="520">
+            <Canvas fx:id="canvasEsquema" width="850" height="520"/>
+        </StackPane>
+    </VBox>
 </AnchorPane>
 
 

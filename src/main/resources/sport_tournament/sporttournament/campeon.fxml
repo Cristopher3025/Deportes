@@ -1,31 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.VBox?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="sport_tournament.sporttournament.CampeonController"
-            prefWidth="600" prefHeight="400">
+            prefWidth="600" prefHeight="450"
+            stylesheets="@../styles/sport-theme.css">
 
-    <ImageView fx:id="imgEquipo" fitHeight="150" fitWidth="150"
-               layoutX="225" layoutY="50" />
+    <VBox alignment="CENTER" spacing="20" layoutX="50" layoutY="30"
+          prefWidth="500" prefHeight="400"
+          AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50"
+          AnchorPane.topAnchor="30" AnchorPane.bottomAnchor="30"
+          styleClass="campeon-contenedor">
 
-    <Label fx:id="lblNombreEquipo" layoutX="50" layoutY="220" prefWidth="500"
-           style="-fx-text-fill: gold; -fx-font-weight: bold;" alignment="center">
-        <font>
-            <Font name="Arial Black" size="24"/>
-        </font>
-    </Label>
+        <ImageView fx:id="imgEquipo" fitHeight="150" fitWidth="150" preserveRatio="true"/>
 
-    <Label text="¡FELICIDADES, CAMPEÓN!" layoutX="50" layoutY="270" prefWidth="500"
-           style="-fx-text-fill: red;" alignment="center">
-        <font>
-            <Font size="28"/>
-        </font>
-    </Label>
+        <Label fx:id="lblNombreEquipo"
+               styleClass="campeon-nombre"
+               maxWidth="500" wrapText="true"/>
+
+        <Label text="¡FELICIDADES, CAMPEÓN!"
+               styleClass="campeon-titulo" maxWidth="500"/>
+
+        <Label text="Sistema desarrollado por Cristopher Ureña"
+               styleClass="firma-desarrollador" />
+
+        <Label text="Universidad Nacional – Campus Coto"
+               styleClass="firma-institucion" />
+
+    </VBox>
 </AnchorPane>
+
 
 

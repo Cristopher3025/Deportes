@@ -21,14 +21,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class SimulacionPartidoController {
-
     @FXML private ImageView img_equipo1;
     @FXML private ImageView img_equipo2;
     @FXML private ImageView img_balon;
@@ -42,10 +40,8 @@ public class SimulacionPartidoController {
     private Team equipo1;
     private Team equipo2;
     private Match partido;
-
     private int goles1 = 0;
     private int goles2 = 0;
-
     private Timeline temporizador;
     private int segundosRestantes;
 
@@ -53,7 +49,6 @@ public class SimulacionPartidoController {
         this.equipo1 = t1;
         this.equipo2 = t2;
         this.partido = partido;
-
         lbl_nombre1.setText(t1.getTeamName());
         lbl_nombre2.setText(t2.getTeamName());
 
@@ -99,6 +94,7 @@ public class SimulacionPartidoController {
         img_balon.setLayoutX(300);
         img_balon.setLayoutY(200);
         actualizarMarcador();
+        SoundManager.playSound("anotacion.mp3");
     }
 
     private void actualizarMarcador() {
@@ -108,9 +104,7 @@ public class SimulacionPartidoController {
     private void iniciarTemporizador() {
         int minutos = partido.getTournamentId().getMatchTimeMinutes().intValue();
         segundosRestantes = minutos * 60;
-
         lbl_timer.setText("Tiempo restante: " + segundosRestantes + "s");
-
         temporizador = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
             segundosRestantes--;
             lbl_timer.setText("Tiempo restante: " + segundosRestantes + "s");
@@ -126,9 +120,8 @@ public class SimulacionPartidoController {
     @FXML
     private void finalizarPartido() {
         if (btn_finalizar.isDisabled()) return;
-
         if (temporizador != null) temporizador.stop();
-
+        SoundManager.playSound("pitazo.mp3");
         MatchResultDAO resultDAO = new MatchResultDAO();
 
         MatchResult r1 = new MatchResult();
@@ -149,12 +142,14 @@ public class SimulacionPartidoController {
             new MatchDAO().updateMatch(partido);
             btn_finalizar.setDisable(true);
             actualizarMarcador();
-            mostrarCampeonSiAplica(partido);
+            new TorneoService().avanzarSiEsNecesario(partido.getTournamentId());
+            
         } else {
             try {
+                SoundManager.playSound("error.mp3");
+
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("desempate.fxml"));
                 Parent root = loader.load();
-
                 DesempateController controller = loader.getController();
                 controller.inicializar(equipo1, equipo2, () -> {
                     Team ganador = controller.getGanador();
@@ -165,10 +160,9 @@ public class SimulacionPartidoController {
                         btn_finalizar.setDisable(true);
                         actualizarMarcador();
                         new TorneoService().avanzarSiEsNecesario(partido.getTournamentId());
-                        mostrarCampeonSiAplica(partido);
+                        
                     }
                 });
-
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
                 stage.setTitle("Desempate");
@@ -179,28 +173,23 @@ public class SimulacionPartidoController {
         }
     }
 
-
     private void mostrarCampeonSiAplica(Match partido) {
         MatchDAO matchDAO = new MatchDAO();
         List<Match> restantes = matchDAO.findByTournament(partido.getTournamentId())
-        .stream().filter(m -> !"Finalizado".equalsIgnoreCase(m.getStatus()))
-        .collect(Collectors.toList());
-
-
+            .stream()
+            .filter(m -> !"Finalizado".equalsIgnoreCase(m.getStatus()))
+            .collect(Collectors.toList());
         if (restantes.isEmpty()) {
             Tournament torneo = partido.getTournamentId();
             torneo.setEstado("Finalizado");
             new TournamentDAO().updateTournament(torneo);
-
             Team campeon = partido.getWinnerId();
-        try {
-            CampeonController.mostrar(campeon);
-            CertificadoService.generarCertificado(torneo, campeon);
-        } catch (Exception e) {
-            e.printStackTrace();
-}
-
+            try {
+                CampeonController.mostrar(campeon);
+                CertificadoService.generarCertificado(torneo, campeon);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
-
 }
